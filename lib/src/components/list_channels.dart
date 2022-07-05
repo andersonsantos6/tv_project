@@ -46,37 +46,40 @@ class ListChannels extends StatelessWidget {
             itemBuilder: (context, index) {
               var channelData =
                   channelController.channelFilter(listChannel, category)[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Card(
-                  color: _randomColors.getColors(_intRandom),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            flex: 7,
-                            child: channelData.logoImage.isEmpty
-                                ? const CircularProgressIndicator()
-                                : Image.network(
-                                    channelData.logoImage,
-                                    fit: BoxFit.cover,
-                                  ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Center(
-                              child: Text(
-                                channelData.title,
-                                style: const TextStyle(color: Colors.white),
+
+              return InkWell(
+                onTap: () =>
+                    channelController.getPage(context, channelData, '/player'),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Card(
+                    color: _randomColors.getColors(_intRandom),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 7,
+                              child: Image.network(
+                                channelData.logoImage,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          )
-                        ],
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Center(
+                                child: Text(
+                                  channelData.title,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

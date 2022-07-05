@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
 import 'package:tv_project_beta_01/src/view/home_page.dart';
+import 'package:tv_project_beta_01/src/view/player_page.dart';
 import 'package:tv_project_beta_01/src/view/search_page.dart';
 
 void main() {
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const HomePage(),
-        '/searchPage': (context) => const SearchPage()
+        '/searchPage': (context) => const SearchPage(),
+        '/player': ((context) => const PlayerPage())
       },
     );
   }
