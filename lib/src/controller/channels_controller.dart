@@ -32,23 +32,23 @@ class ChannelController with ChangeNotifier {
     });
   }
 
-  Future<void> getFeed() async {
-    final response = await http.get(Uri.parse(
-        'https://tvproject-247d8-default-rtdb.firebaseio.com/feed.json'));
+  // Future<void> getFeed() async {
+  //   final response = await http.get(Uri.parse(
+  //       'https://tvproject-247d8-default-rtdb.firebaseio.com/feed.json'));
 
-    if (response.body == 'null') return;
-    Map<String, dynamic> data = jsonDecode(response.body);
+  //   if (response.body == 'null') return;
+  //   Map<String, dynamic> data = jsonDecode(response.body);
 
-    data.forEach((key, feedData) {
-      listFeed.add(FeedModel(
-        image: feedData['image'],
-        title: feedData['title'],
-        text: feedData['text'],
-      ));
-      notifyListeners();
-      print(response.body);
-    });
-  }
+  //   data.forEach((key, feedData) {
+  //     listFeed.add(FeedModel(
+  //       image: feedData['image'],
+  //       title: feedData['title'],
+  //       text: feedData['text'],
+  //     ));
+  //     notifyListeners();
+  //     print(response.body);
+  //   });
+  // }
 
   getPage(BuildContext context, Object? args, String page) {
     Navigator.of(context).pushNamed(page, arguments: args);
@@ -64,7 +64,8 @@ class ChannelController with ChangeNotifier {
   List<ChannelModel> channelSearch(
       List<ChannelModel> listChannel, String value) {
     return listChannel
-        .where((ch) => ch.title.toLowerCase() == value.toLowerCase())
+        .where((ch) =>
+            ch.title.toLowerCase().contains(value.toString().toLowerCase()))
         .toList();
   }
   //   Future<void> loadProducts() async {

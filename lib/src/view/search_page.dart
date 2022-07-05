@@ -15,14 +15,27 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  @override
+  late TextEditingController _controller;
   late String inputChannel = '';
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    // TODO: implement initState
+    super.initState();
+  }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final channelController =
         Provider.of<ChannelController>(context, listen: false);
     List<ChannelModel> list = channelController.channelSearch(
-        channelController.listChannel, inputChannel);
+        channelController.listChannel, _controller.text);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -32,28 +45,40 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: Column(
         children: [
-          Expanded(
-            flex: 1,
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  decoration: const InputDecoration(
-                      hintText: 'Digite um Canal para buscar:'),
-                  keyboardType: TextInputType.text,
-                  onSubmitted: (value) {
-                    setState(() {
-                      inputChannel = value.toString();
-                    });
-                  },
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Card(
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                          decoration: const InputDecoration(
+                              hintText: 'Digite um Canal para buscar:'),
+                          keyboardType: TextInputType.text,
+                          controller: _controller,
+                          onSubmitted: (value) {
+                            setState(() {
+                              _controller.text == value;
+                            });
+                          })),
                 ),
               ),
-            ),
+              Card(
+                  child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.search)),
+              ))
+            ],
           ),
           Expanded(
             flex: 9,
             child: Container(
-              child: inputChannel == ''
+              child: _controller.text == ''
                   ? null
                   : Column(
                       children: [
@@ -79,26 +104,42 @@ class _SearchPageState extends State<SearchPage> {
                                   ),
                                 ))
                             : Expanded(
-                                child: ListView.builder(
-                                  itemCount: list.length,
-                                  itemBuilder: ((context, index) {
-                                    var element = list[index];
-                                    return Card(
-                                      elevation: 2,
-                                      child: ListTile(
-                                        subtitle: Text(
-                                          element.about,
-                                          style: const TextStyle(
-                                              overflow: TextOverflow.ellipsis),
-                                        ),
-                                        title: Text(
-                                          element.title,
-                                        ),
-                                        trailing:
-                                            Image.network(element.logoImage),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Encontrado(s) ${list.length} canais:',
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                       ),
-                                    );
-                                  }),
+                                    ),
+                                    Expanded(
+                                      child: ListView.builder(
+                                        itemCount: list.length,
+                                        itemBuilder: ((context, index) {
+                                          var element = list[index];
+                                          return Card(
+                                            elevation: 2,
+                                            child: ListTile(
+                                              subtitle: Text(
+                                                element.about,
+                                                style: const TextStyle(
+                                                    overflow:
+                                                        TextOverflow.ellipsis),
+                                              ),
+                                              title: Text(
+                                                element.title,
+                                              ),
+                                              trailing: Image.network(
+                                                  element.logoImage),
+                                            ),
+                                          );
+                                        }),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                       ],
