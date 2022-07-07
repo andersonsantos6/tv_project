@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tv_project_beta_01/src/components/list_channels.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
 import 'package:tv_project_beta_01/src/model/channel_model.dart';
+import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
 import 'package:tv_project_beta_01/src/utils/ux_random_colors.dart';
 
 class SearchPage extends StatefulWidget {
@@ -32,49 +33,37 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    final color = CustomColors();
     final channelController =
         Provider.of<ChannelController>(context, listen: false);
     List<ChannelModel> list = channelController.channelSearch(
         channelController.listChannel, _controller.text);
 
     return Container(
-      color: Colors.green,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: color.primaryColor(),
           appBar: AppBar(
+            backgroundColor: color.primaryColor(),
             title: const Text('Buscar Canal'),
-            backgroundColor: Colors.transparent,
           ),
           body: Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                            decoration: const InputDecoration(
-                                hintText: 'Digite um Canal para buscar:'),
-                            keyboardType: TextInputType.text,
-                            controller: _controller,
-                            onSubmitted: (value) {
-                              setState(() {});
-                            }),
-                      ),
+              Expanded(
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: const InputDecoration(
+                          hintText: 'Digite um Canal para buscar:'),
+                      keyboardType: TextInputType.text,
+                      controller: _controller,
+                      onChanged: (value) {
+                        setState(() {});
+                      },
                     ),
                   ),
-                  Card(
-                      child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.search)),
-                  ))
-                ],
+                ),
               ),
               Expanded(
                 flex: 9,
@@ -126,6 +115,11 @@ class _SearchPageState extends State<SearchPage> {
                                               return Card(
                                                 elevation: 2,
                                                 child: ListTile(
+                                                  onTap: () =>
+                                                      channelController.getPage(
+                                                          context,
+                                                          list[index],
+                                                          '/player'),
                                                   subtitle: Text(
                                                     element.about,
                                                     style: const TextStyle(

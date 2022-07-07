@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
 import 'package:tv_project_beta_01/src/model/channel_model.dart';
 import 'package:tv_project_beta_01/src/utils/display_size.dart';
+import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
 import 'package:tv_project_beta_01/src/utils/ux_random_colors.dart';
 
 class ListChannels extends StatelessWidget {
@@ -19,6 +20,7 @@ class ListChannels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = CustomColors();
     final displaySize = DisplaySize();
     final channelController = ChannelController();
     final _randomColors = RandomColors();
@@ -52,8 +54,10 @@ class ListChannels extends StatelessWidget {
                     channelController.getPage(context, channelData, '/player'),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Card(
-                    color: _randomColors.getColors(_intRandom),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: color.secondaryColor(),
+                        borderRadius: BorderRadius.circular(8)),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Container(

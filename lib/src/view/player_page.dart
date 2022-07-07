@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:tv_project_beta_01/src/model/channel_model.dart';
@@ -35,34 +36,57 @@ class _PlayerPageState extends State<PlayerPage> {
       color: Colors.red,
       child: SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            title: Text(channelData.title),
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: _controller.value.isInitialized
-                    ? AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: VideoPlayer(_controller))
-                    : const Center(
-                        child: CircularProgressIndicator(),
+          appBar: MediaQuery.of(context).orientation == Orientation.landscape
+              ? null
+              : AppBar(
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.network(channelData.logoImage),
+                    )
+                  ],
+                  title: Text(channelData.title),
+                ),
+          body: MediaQuery.of(context).orientation == Orientation.landscape
+              ? Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: _controller.value.isInitialized
+                      ? Expanded(
+                          child: AspectRatio(
+                            aspectRatio: _controller.value.aspectRatio,
+                            child: VideoPlayer(_controller),
+                          ),
+                        )
+                      : const Center(
+                          child: CircularProgressIndicator(),
+                        ))
+              : Column(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: _controller.value.isInitialized
+                          ? AspectRatio(
+                              aspectRatio: _controller.value.aspectRatio,
+                              child: VideoPlayer(_controller))
+                          : const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                            child: Column(
+                          children: [
+                            Text(channelData.about),
+                          ],
+                        )),
                       ),
-              ),
-              Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                        child: Column(
-                      children: [
-                        Text(channelData.about),
-                      ],
-                    )),
-                  ))
-            ],
-          ),
+                    )
+                  ],
+                ),
         ),
       ),
     );

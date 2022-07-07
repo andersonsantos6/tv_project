@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tv_project_beta_01/src/components/list_channels.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
 import 'package:tv_project_beta_01/src/utils/display_size.dart';
+import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final color = CustomColors();
   @override
   Widget build(BuildContext context) {
     final channelController =
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             elevation: 0,
             backgroundColor: Colors.transparent,
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: color.primaryColor(),
           body: FutureBuilder(
             future: channelController.getChannels(),
             builder: (context, snapshot) {

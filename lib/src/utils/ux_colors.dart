@@ -1,6 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CustomColors {
-  static final primaryColor = Color.fromARGB(255, 3, 10, 140);
-  static final secondaryColor = Color.fromARGB(255, 19, 31, 242);
+  primaryColor() {
+    return Color.fromARGB(255, 18, 0, 65);
+  }
+
+  secondaryColor() {
+    return Colors.white.withOpacity(0.2);
+  }
 }
