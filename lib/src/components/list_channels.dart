@@ -11,12 +11,13 @@ class ListChannels extends StatelessWidget {
   late List<ChannelModel> listChannel;
   late Axis direction;
   late String category;
-  ListChannels(
-      {Key? key,
-      required this.listChannel,
-      required this.direction,
-      required this.category})
-      : super(key: key);
+
+  ListChannels({
+    Key? key,
+    required this.listChannel,
+    required this.direction,
+    required this.category,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class ListChannels extends StatelessWidget {
           height: 10,
         ),
         Container(
-          height: displaySize.height(context, 0.15),
+          height: displaySize.height(context, 0.2),
           child: ListView.builder(
             scrollDirection: direction,
             itemCount:
@@ -57,11 +58,13 @@ class ListChannels extends StatelessWidget {
                         color: color.secondaryColor(),
                         borderRadius: BorderRadius.circular(8)),
                     child: Padding(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            flex: 7,
+                            flex: 2,
                             child: Image.network(
                               channelData.logoImage,
                               fit: BoxFit.cover,
@@ -70,12 +73,14 @@ class ListChannels extends StatelessWidget {
                           const SizedBox(
                             height: 5,
                           ),
-                          Expanded(
-                            flex: 3,
-                            child: Center(
+                          Container(
+                            child: Expanded(
                               child: Text(
                                 channelData.title,
-                                style: const TextStyle(color: Colors.white),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    overflow: TextOverflow.fade),
                               ),
                             ),
                           )

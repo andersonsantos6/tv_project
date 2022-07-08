@@ -32,8 +32,7 @@ class _PlayerPageState extends State<PlayerPage> {
   Widget build(BuildContext context) {
     var color = CustomColors();
     final orientation = MediaQuery.of(context).orientation;
-    return Container(
-      color: color.primaryColor(),
+    return SafeArea(
       child: Scaffold(
         backgroundColor: color.primaryColor(),
         appBar: orientation == Orientation.landscape
@@ -53,11 +52,9 @@ class _PlayerPageState extends State<PlayerPage> {
                 height: double.infinity,
                 width: double.infinity,
                 child: _controller.value.isInitialized
-                    ? Expanded(
-                        child: AspectRatio(
-                          aspectRatio: _controller.value.aspectRatio,
-                          child: VideoPlayer(_controller),
-                        ),
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
                       )
                     : const Center(
                         child: CircularProgressIndicator(),
@@ -102,7 +99,8 @@ class _PlayerPageState extends State<PlayerPage> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      channelData.about,
+                                      channelData.about +
+                                          ' fonte: wikipedia.org',
                                       style: const TextStyle(
                                         overflow: TextOverflow.fade,
                                         color: Colors.white,

@@ -51,11 +51,15 @@ class _SearchPageState extends State<SearchPage> {
             children: [
               Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: TextField(
-                    decoration: const InputDecoration(
-                        icon: Icon(Icons.search),
-                        hintText: 'Digite um canal para buscar:'),
+                    decoration: InputDecoration(
+                      label: const Text('Digite um canal para buscar:'),
+                      icon: Icon(
+                        Icons.search,
+                        color: color.primaryColor(),
+                      ),
+                    ),
                     keyboardType: TextInputType.text,
                     controller: _controller,
                     onChanged: (value) {
@@ -91,7 +95,7 @@ class _SearchPageState extends State<SearchPage> {
                                             width: 10,
                                           ),
                                           Text(
-                                            'Nenhum canal foi encontrado.',
+                                            'Nenhum canal encontrado.',
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
