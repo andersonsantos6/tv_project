@@ -64,8 +64,10 @@ class ChannelController with ChangeNotifier {
   List<ChannelModel> channelSearch(
       List<ChannelModel> listChannel, String value) {
     return listChannel
-        .where((ch) =>
-            ch.title.toLowerCase().contains(value.toString().toLowerCase()))
+        .where(
+          (ch) =>
+              ch.title.toLowerCase().contains(value.toString().toLowerCase()),
+        )
         .toList();
   }
   //   Future<void> loadProducts() async {

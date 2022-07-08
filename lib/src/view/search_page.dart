@@ -49,19 +49,18 @@ class _SearchPageState extends State<SearchPage> {
           ),
           body: Column(
             children: [
-              Expanded(
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      decoration: const InputDecoration(
-                          hintText: 'Digite um Canal para buscar:'),
-                      keyboardType: TextInputType.text,
-                      controller: _controller,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
-                    ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    decoration: const InputDecoration(
+                        icon: Icon(Icons.search),
+                        hintText: 'Digite um canal para buscar:'),
+                    keyboardType: TextInputType.text,
+                    controller: _controller,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
                   ),
                 ),
               ),
@@ -69,7 +68,12 @@ class _SearchPageState extends State<SearchPage> {
                 flex: 9,
                 child: Container(
                   child: _controller.text == ''
-                      ? null
+                      ? Center(
+                          child: Container(
+                          height: 300,
+                          child: Image.asset(
+                              'lib/src/assets/searchPage/search.png'),
+                        ))
                       : Column(
                           children: [
                             list.isEmpty
@@ -87,7 +91,7 @@ class _SearchPageState extends State<SearchPage> {
                                             width: 10,
                                           ),
                                           Text(
-                                            'Nenhum Canal foi encontrado.',
+                                            'Nenhum canal foi encontrado.',
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),

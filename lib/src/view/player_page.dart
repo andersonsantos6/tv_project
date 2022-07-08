@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:tv_project_beta_01/src/model/channel_model.dart';
+import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayerPage extends StatefulWidget {
@@ -32,36 +30,41 @@ class _PlayerPageState extends State<PlayerPage> {
 
   @override
   Widget build(BuildContext context) {
+    var color = CustomColors();
+    final orientation = MediaQuery.of(context).orientation;
     return Container(
-      color: Colors.red,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: MediaQuery.of(context).orientation == Orientation.landscape
-              ? null
-              : AppBar(
-                  actions: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.network(channelData.logoImage),
-                    )
-                  ],
-                  title: Text(channelData.title),
-                ),
-          body: MediaQuery.of(context).orientation == Orientation.landscape
-              ? Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: _controller.value.isInitialized
-                      ? Expanded(
-                          child: AspectRatio(
-                            aspectRatio: _controller.value.aspectRatio,
-                            child: VideoPlayer(_controller),
-                          ),
-                        )
-                      : const Center(
-                          child: CircularProgressIndicator(),
-                        ))
-              : Column(
+      color: color.primaryColor(),
+      child: Scaffold(
+        backgroundColor: color.primaryColor(),
+        appBar: orientation == Orientation.landscape
+            ? null
+            : AppBar(
+                backgroundColor: color.primaryColor(),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Image.network(channelData.logoImage),
+                  )
+                ],
+                title: Text(channelData.title),
+              ),
+        body: orientation == Orientation.landscape
+            ? Container(
+                height: double.infinity,
+                width: double.infinity,
+                child: _controller.value.isInitialized
+                    ? Expanded(
+                        child: AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: VideoPlayer(_controller),
+                        ),
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ))
+            : Container(
+                color: color.primaryColor(),
+                child: Column(
                   children: [
                     Expanded(
                       flex: 2,
@@ -78,16 +81,43 @@ class _PlayerPageState extends State<PlayerPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Container(
-                            child: Column(
-                          children: [
-                            Text(channelData.about),
-                          ],
-                        )),
+                            decoration: BoxDecoration(
+                                color: color.secondaryColor(),
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Sobre ${channelData.title}',
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      channelData.about,
+                                      style: const TextStyle(
+                                        overflow: TextOverflow.fade,
+                                        color: Colors.white,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )),
                       ),
                     )
                   ],
                 ),
-        ),
+              ),
       ),
     );
   }
