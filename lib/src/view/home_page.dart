@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_project_beta_01/src/components/list_channels.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
-import 'package:tv_project_beta_01/src/utils/display_size.dart';
 import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +20,7 @@ class _HomePageState extends State<HomePage> {
 
     return SafeArea(
       child: Scaffold(
-        drawer: const Drawer(backgroundColor: Colors.black),
+        drawer: Drawer(),
         appBar: AppBar(
           actions: [
             IconButton(

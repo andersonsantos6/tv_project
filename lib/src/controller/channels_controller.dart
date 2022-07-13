@@ -8,6 +8,7 @@ import 'package:tv_project_beta_01/src/model/channel_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:tv_project_beta_01/src/model/feed_model.dart';
 import 'package:tv_project_beta_01/src/view/home_page.dart';
+import 'package:video_player/video_player.dart';
 
 class ChannelController with ChangeNotifier {
   final List<FeedModel> listFeed = [];
@@ -51,7 +52,7 @@ class ChannelController with ChangeNotifier {
   // }
 
   getPage(BuildContext context, Object? args, String page) {
-    Navigator.of(context).pushNamed(page, arguments: args);
+    return Navigator.of(context).pushNamed(page, arguments: args);
   }
 
   List<ChannelModel> channelFilter(
@@ -70,6 +71,7 @@ class ChannelController with ChangeNotifier {
         )
         .toList();
   }
+
   //   Future<void> loadProducts() async {
   //   _items.clear();
   //   final response =

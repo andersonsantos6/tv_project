@@ -50,24 +50,17 @@ class _PlayerPageState extends State<PlayerPage> {
                 title: Text(channelData.title),
               ),
         body: orientation == Orientation.landscape
-            ? InkWell(
-                onTap: () {
-                  setState(() {
-                    _controller.pause();
-                  });
-                },
-                child: Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    child: _controller.value.isInitialized
-                        ? AspectRatio(
-                            aspectRatio: _controller.value.aspectRatio,
-                            child: VideoPlayer(_controller),
-                          )
-                        : const Center(
-                            child: CircularProgressIndicator(),
-                          )),
-              )
+            ? Container(
+                height: double.infinity,
+                width: double.infinity,
+                child: _controller.value.isInitialized
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ))
             : Container(
                 color: color.primaryColor(),
                 child: Column(
