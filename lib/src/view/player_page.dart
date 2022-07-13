@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
 import 'package:tv_project_beta_01/src/model/channel_model.dart';
 import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
 import 'package:video_player/video_player.dart';
@@ -48,17 +50,24 @@ class _PlayerPageState extends State<PlayerPage> {
                 title: Text(channelData.title),
               ),
         body: orientation == Orientation.landscape
-            ? Container(
-                height: double.infinity,
-                width: double.infinity,
-                child: _controller.value.isInitialized
-                    ? AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: VideoPlayer(_controller),
-                      )
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      ))
+            ? InkWell(
+                onTap: () {
+                  setState(() {
+                    _controller.pause();
+                  });
+                },
+                child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: _controller.value.isInitialized
+                        ? AspectRatio(
+                            aspectRatio: _controller.value.aspectRatio,
+                            child: VideoPlayer(_controller),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          )),
+              )
             : Container(
                 color: color.primaryColor(),
                 child: Column(

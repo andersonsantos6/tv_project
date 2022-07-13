@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
 import 'package:tv_project_beta_01/src/model/channel_model.dart';
 import 'package:tv_project_beta_01/src/utils/display_size.dart';
 import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
-import 'package:tv_project_beta_01/src/utils/ux_random_colors.dart';
 
 class ListChannels extends StatelessWidget {
   late List<ChannelModel> listChannel;
