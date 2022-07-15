@@ -60,7 +60,7 @@ A Página de busca consiste em filter functions,que comparam letras do controlle
 </p>
 <h2>Repository</h2>
 <p>
-Os dados do repositório são requisitados no firebase e salvos em um provider, onde é distribuido em toda aplicação. (Obs. banco de endpoint censurado por motivos de segurança S2 )
+Os dados do repositório são requisitados no firebase e salvos em um provider, onde é distribuido em toda aplicação. (Obs. o endpoint do banco foi censurado por motivos de segurança S2 )
 <p><img src="https://user-images.githubusercontent.com/99498850/179301436-3f46e3c9-ac42-4049-90f6-5917694a1446.PNG" height = 400 ></p>
 
 </p>
