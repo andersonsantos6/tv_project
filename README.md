@@ -9,8 +9,6 @@
 </p>
 
 
-</P>
-
 <h2>Login Page</h2>
 <p>No sistema de login, foi utilizado o recurso Authentication do Firebase, sendo E-mail e senha, o principal provedor de Sing-in Method.</p>
 <p>
@@ -41,26 +39,26 @@ Dentro da Página onde é reproduzido os canais, foi utilizado o Package <i>vide
 
 <p>
 A Página de busca consiste em filter functions,que comparam letras do controller com os titulos dos objetos (channelModel) que foram requisitados no database. 
-<p>List<ChannelModel> channelSearch(
-      List<ChannelModel> listChannel, String value) {
-    return listChannel
-        .where(
-          (ch) =>
-              ch.title.toLowerCase().contains(value.toString().toLowerCase()),
-        )
-        .toList();
-  }
-  </p>
-  
- <p> <img src="https://user-images.githubusercontent.com/99498850/179300742-46d7c059-9368-41fe-bbdc-9cf1463c58f2.png" height = 400 >
-  <img src="https://user-images.githubusercontent.com/99498850/179300743-8aed40b5-262f-4bb4-8976-9db781e367e1.png" height = 400>
-  <img src="https://user-images.githubusercontent.com/99498850/179300745-ef8f4e1d-72ca-4ada-9b82-2b6d50f8a939.png" height = 400 >
-  <img src="https://user-images.githubusercontent.com/99498850/179300747-a3c0971f-d8e7-4913-954f-a21bbd50d370.png" height = 400>
-  </p>
 </p>
+
+```
+List<ChannelModel> channelSearch(
+      List<ChannelModel> listChannel, String value) {
+    return listChannel.where((ch) => ch.title.toLowerCase().contains(value.toString().toLowerCase()),
+        ).toList();
+  }
+```
+  
+ <p> <img src="https://user-images.githubusercontent.com/99498850/179354683-43634900-8b67-47f2-b9f8-ac1d1af1d797.jpg" height = 400 >
+  <img src="https://user-images.githubusercontent.com/99498850/179354685-92dd8895-f7a5-470b-9a2e-45ed3b174365.jpg" height = 400>
+  <img src="https://user-images.githubusercontent.com/99498850/179354686-545828b9-d600-4555-a489-52c36aaae409.jpg" height = 400 >
+  <img src="https://user-images.githubusercontent.com/99498850/179354687-59835f8e-7887-4ab4-90c3-44fe115af789.jpg" height = 400>
+  </p>
+
 <h2>Repository</h2>
 <p>
 Os dados do repositório são requisitados no firebase e salvos em um provider, onde é distribuido em toda aplicação. (Obs. o endpoint do banco foi censurado por motivos de segurança S2 )
-<p><img src="https://user-images.githubusercontent.com/99498850/179301436-3f46e3c9-ac42-4049-90f6-5917694a1446.PNG" height = 400 ></p>
+</p>
+<img src="https://user-images.githubusercontent.com/99498850/179301436-3f46e3c9-ac42-4049-90f6-5917694a1446.PNG" height = 400 width = 800></p>
 
 </p>
