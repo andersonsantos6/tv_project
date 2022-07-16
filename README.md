@@ -29,7 +29,7 @@ A pagina inicial do App foi feita utilizando uma ListView que renderiza uma list
 
 <h2>Player Page</h2>
 <p>
-Dentro da Página onde é reproduzido os canais, foi utilizado o Package <i>video_player</i>, responsável por consumir o link m3u dos canais através do model passado como argumento da página home.
+Dentro da Página onde é reproduzido os canais, foi utilizado o Package <i>video_player</i>, responsável por consumir o link m3u dos canais através do model recebido como argumento da página home.
 </p>
 
 <p>
