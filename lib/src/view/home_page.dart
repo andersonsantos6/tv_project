@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_project_beta_01/src/components/list_channels.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
+import 'package:tv_project_beta_01/src/model/auth.dart';
 import 'package:tv_project_beta_01/src/utils/ux_colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,12 +16,19 @@ class _HomePageState extends State<HomePage> {
   final color = CustomColors();
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of(context);
     final channelController =
         Provider.of<ChannelController>(context, listen: false);
 
     return SafeArea(
       child: Scaffold(
-        drawer: Drawer(),
+        drawer: Drawer(
+          child: IconButton(
+              icon: const Icon(Icons.exit_to_app),
+              onPressed: () {
+                auth.logon(context);
+              }),
+        ),
         appBar: AppBar(
           actions: [
             IconButton(
