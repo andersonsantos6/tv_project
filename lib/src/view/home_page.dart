@@ -22,13 +22,7 @@ class _HomePageState extends State<HomePage> {
 
     return SafeArea(
       child: Scaffold(
-        drawer: Drawer(
-          child: IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              onPressed: () {
-                auth.logon(context);
-              }),
-        ),
+        drawer: Drawer(),
         appBar: AppBar(
           actions: [
             IconButton(

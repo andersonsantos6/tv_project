@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tv_project_beta_01/src/components/list_channels.dart';
 import 'package:tv_project_beta_01/src/controller/channels_controller.dart';
 import 'package:tv_project_beta_01/src/model/auth.dart';
 import 'package:tv_project_beta_01/src/view/auth_or_home_pade.dart';
@@ -13,10 +14,14 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => ChannelController(),
-        ),
-        ChangeNotifierProvider(
           create: (BuildContext context) => Auth(),
+        ),
+        ChangeNotifierProxyProvider<Auth, ChannelController>(
+          update: ((context, auth, previous) {
+            return ChannelController(
+                auth.token ?? '', previous?.listChannel ?? []);
+          }),
+          create: (BuildContext context) => ChannelController('', []),
         ),
       ],
       child: const MyApp(),

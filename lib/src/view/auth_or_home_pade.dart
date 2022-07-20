@@ -13,6 +13,6 @@ class AuthOrHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Auth auth = Provider.of(context);
     print(auth.isAuth);
-    return auth.isAuth ? HomePage() : AuthPage();
+    return auth.isAuth ? const HomePage() : const AuthPage();
   }
 }

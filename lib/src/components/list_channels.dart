@@ -20,7 +20,7 @@ class ListChannels extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = CustomColors();
     final displaySize = DisplaySize();
-    final channelController = ChannelController();
+    final channelController = ChannelController('', []);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -27,12 +27,6 @@ class Auth with ChangeNotifier {
     return isAuth ? _uid : null;
   }
 
-  logon(BuildContext context) {
-    _token = null;
-    Navigator.of(context).pushNamed('/auth');
-    notifyListeners();
-  }
-
   Future<void> _authenticate(
       String email, String password, String urlFragment) async {
     final url =

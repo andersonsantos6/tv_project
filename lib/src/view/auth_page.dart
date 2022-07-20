@@ -11,22 +11,25 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var color = CustomColors();
     return SafeArea(
       child: Scaffold(
+          backgroundColor: color.primaryColor(),
           body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                  height: 300,
-                  child: Image.asset('lib/src/assets/authPage/auth_art.png')),
-              AuthForm()
-            ],
-          ),
-        ),
-      )),
+            width: double.infinity,
+            height: double.infinity,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                      height: 300,
+                      child:
+                          Image.asset('lib/src/assets/authPage/auth_art.png')),
+                  AuthForm()
+                ],
+              ),
+            ),
+          )),
     );
   }
 }
