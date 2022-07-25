@@ -6,7 +6,6 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_project_beta_01/src/model/channel_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:tv_project_beta_01/src/model/feed_model.dart';
 import 'package:tv_project_beta_01/src/view/home_page.dart';
 import 'package:video_player/video_player.dart';
 
